@@ -1,0 +1,9 @@
+:root{
+  --clr-1:hsl(0, 0%, 100%);
+  --clr-2:hsl(0, 0%, 85%);
+  --clr-3:hsl(0, 0%, 0%);
+}
+
+$clr1:var(--clr-1);
+$cle2:var(--clr-2);
+$clr3:var(--clr-3);
