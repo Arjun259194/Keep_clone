@@ -1,20 +1,115 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-:root{
-  --clr-1:#ffffff;
-  --clr-2:#ffd983;
-  --clr-3:#000000;
-  --clr-4:#6CAA7F;
+// LINKS
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+// Variables
+:root {
+  --clr-1: #ffffff;
+  --clr-2: #ffd983;
+  --clr-3: #1c1c1c;
+  --clr-4: #6caa7f;
 }
 
-$clr1:var(--clr-1);
-$cle2:var(--clr-2);
-$clr3:var(--clr-3);
-$clr4:var(--clr-4);
-$font-fam-1:'Josefin Sans', sans-serif;
+$clr1: var(--clr-1);
+$clr2: var(--clr-2);
+$clr3: var(--clr-3);
+$clr4: var(--clr-4);
+$bor-r: 1rem;
+// $pad1:.5em;
+// $pad2:1em;
+// $mrg1:.5rem;
+// $mrg2:1rem;
+// $border:1px;
+$font-fam-1: "Josefin Sans", sans-serif;
 
-*{
+@mixin prim_btn {
+  padding: 0.5em 1em;
+  background-color: $clr2;
+  color: $clr4;
+  border: 2px $clr4 solid;
+  border-radius: 1rem;
+  transition: background-color 100ms ease-out;
+  transition: border-radius 300ms ease-out;
+
+  &:hover {
+    border-radius: 0.5rem;
+  }
+
+  &:active {
+    background-color: $clr4;
+    color: $clr2;
+  }
+}
+
+// Default style
+
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: $font-fam-1;
+  color: $clr3;
+  transition: all 300ms ease;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.active_nav {
+  a {
+    color: $clr4;
+    font-weight: bold;
+  }
+}
+
+// element style
+
+.nav_bar {
+  padding: 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $clr2;
+  .left_nav {
+    display: flex;
+    align-items: center;
+    img {
+      padding: 0.25rem;
+      background-color: $clr3;
+      border-radius: 50%;
+    }
+  }
+  .center_nav {
+    ul {
+      display: flex;
+      align-items: center;
+      li {
+        margin-right: 2rem;
+        a {
+          text-transform: capitalize;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .nav_add_btn {
+    @include prim_btn();
+  }
 }
