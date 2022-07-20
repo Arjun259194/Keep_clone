@@ -36,7 +36,7 @@ $font-fam-1: "Josefin Sans", sans-serif;
   }
 }
 
-@mixin icon_btn($clr) {
+@mixin icon_btn($clr, $clrH) {
   border: none;
   background-color: #00000000;
   color: $clr;
@@ -44,7 +44,7 @@ $font-fam-1: "Josefin Sans", sans-serif;
 
   &:hover,
   &:focus {
-    color: $clr4;
+    color: $clrH;
   }
 }
 // Default style
@@ -134,7 +134,7 @@ ul {
   background-color: $clr1;
 
   .card {
-    width: 25ch;
+    width: 30ch;
     padding: 1rem;
     margin: 1rem;
     border: 1px solid $clr5;
@@ -161,7 +161,6 @@ ul {
     .card_item_list {
       min-height: 200px;
       max-height: 300px;
-      padding: 0.25rem;
       padding-top: 0.5rem;
       overflow-y: scroll;
 
@@ -181,12 +180,16 @@ ul {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-radius: .25rem;
+        border-radius: 0.25rem;
 
         &:hover,
-        &:focus{
-          .item_edit_btn{
-            display: block;
+        &:focus {
+          .item_btns {
+            .item_cancel_btn,
+            .item_add_btn,
+            .item_edit_btn {
+              display: block;
+            }
           }
         }
 
@@ -195,8 +198,8 @@ ul {
         }
 
         .item_text {
-          padding: .255rem;
-          font-size: 1rem;
+          padding: 0.255rem;
+          font-size: 0.9rem;
           font-weight: 400;
           display: flex;
           align-items: flex-start;
@@ -205,20 +208,34 @@ ul {
             cursor: pointer;
           }
 
-          span{
-            &:focus{
+          span {
+            inline-size: 140px;
+            overflow-wrap: break-word;
+            &:focus {
               outline: none;
-              border-bottom: 2px solid $clr4;
+              border-bottom: 1px solid $clr5;
             }
           }
         }
+        .item_btns {
+          display: flex;
+          .item_edit_btn {
+            display: none;
+            @include icon_btn($clr5, $clr4);
+            font-size: 1rem;
+          }
 
-        .item_edit_btn {
-          display: none;
-          @include icon_btn($clr5);
-          font-size: 1.25rem;
+          .item_cancel_btn {
+            display: none;
+            @include icon_btn($clr5, #ff5e5e);
+            font-size: 1rem;
+          }
         }
       }
     }
+  }
+  .item_add_btn {
+    @include icon_btn($clr5, $clr4);
+    font-size: 1.5rem;
   }
 }

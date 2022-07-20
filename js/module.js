@@ -1,24 +1,28 @@
-const editableItemListner = () => {
-  document.querySelectorAll('.item_edit_btn').forEach(Element => {
-    const parent = Element.parentElement
-    const text = parent.querySelector('.item_text span')
-    Element.addEventListener('click', (event) => {
-      text.contentEditable = true
-      text.click()
-      selectText(text)
+const doc = document
 
-      text.addEventListener("keypress", (event) => {
-        if (event.keyCode === 13) {
-          event.preventDefault();
-          text.contentEditable = false
-        }
-      });
+const listItem = () => {
+  let li = doc.createElement('li')
+  li.classList.add('list_item')
+  li.innerHTML =
+    `<span class="item_text">
+      <input type="checkbox" class="item_check" />
+      <span contenteditable="false">list text</span>
+    </span>
+    <div class="item_btns">
+      <button class="item_edit_btn material-symbols-outlined">edit</button>
+      <button class="item_cancel_btn material-symbols-outlined">close</button>
+    </div>`
 
-      text.addEventListener('blur', () => {
-        text.contentEditable = false
-      })
-    })
-  })
+  return li
+}
+
+const addListItem = el =>{
+    el.appendChild(listItem())
+    setListener()
+}
+
+const getListItem = el => {
+  return el.parentElement.parentElement
 }
 
 const selectText = el => {
@@ -28,13 +32,3 @@ const selectText = el => {
   sel.removeAllRanges()
   sel.addRange(range)
 }
-
-// const formateText = el => {
-//   console.log("from formate text");
-//   console.log(el);
-//   let text = el.innerText;
-//   console.log(text);
-//   let formatedText = text.replace(, '')
-//   console.log(formatedText);
-//   el.innerText = formatedText
-// }

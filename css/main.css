@@ -93,7 +93,7 @@ ul {
   background-color: var(--clr-1);
 }
 .container .card {
-  width: 25ch;
+  width: 30ch;
   padding: 1rem;
   margin: 1rem;
   border: 1px solid var(--clr-5);
@@ -116,7 +116,6 @@ ul {
 .container .card .card_item_list {
   min-height: 200px;
   max-height: 300px;
-  padding: 0.25rem;
   padding-top: 0.5rem;
   overflow-y: scroll;
 }
@@ -137,7 +136,11 @@ ul {
   justify-content: space-between;
   border-radius: 0.25rem;
 }
-.container .card .card_item_list .list_item:hover .item_edit_btn, .container .card .card_item_list .list_item:focus .item_edit_btn {
+.container .card .card_item_list .list_item:hover .item_btns .item_cancel_btn,
+.container .card .card_item_list .list_item:hover .item_btns .item_add_btn,
+.container .card .card_item_list .list_item:hover .item_btns .item_edit_btn, .container .card .card_item_list .list_item:focus .item_btns .item_cancel_btn,
+.container .card .card_item_list .list_item:focus .item_btns .item_add_btn,
+.container .card .card_item_list .list_item:focus .item_btns .item_edit_btn {
   display: block;
 }
 .container .card .card_item_list .list_item > * > * {
@@ -145,7 +148,7 @@ ul {
 }
 .container .card .card_item_list .list_item .item_text {
   padding: 0.255rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   display: flex;
   align-items: flex-start;
@@ -154,18 +157,46 @@ ul {
 .container .card .card_item_list .list_item .item_text .item_check {
   cursor: pointer;
 }
+.container .card .card_item_list .list_item .item_text span {
+  inline-size: 140px;
+  overflow-wrap: break-word;
+}
 .container .card .card_item_list .list_item .item_text span:focus {
   outline: none;
-  border-bottom: 2px solid var(--clr-4);
+  border-bottom: 1px solid var(--clr-5);
 }
-.container .card .card_item_list .list_item .item_edit_btn {
+.container .card .card_item_list .list_item .item_btns {
+  display: flex;
+}
+.container .card .card_item_list .list_item .item_btns .item_edit_btn {
   display: none;
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: var(--clr-5);
   transition: color 100ms ease;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
-.container .card .card_item_list .list_item .item_edit_btn:hover, .container .card .card_item_list .list_item .item_edit_btn:focus {
+.container .card .card_item_list .list_item .item_btns .item_edit_btn:hover, .container .card .card_item_list .list_item .item_btns .item_edit_btn:focus {
+  color: var(--clr-4);
+}
+.container .card .card_item_list .list_item .item_btns .item_cancel_btn {
+  display: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--clr-5);
+  transition: color 100ms ease;
+  font-size: 1rem;
+}
+.container .card .card_item_list .list_item .item_btns .item_cancel_btn:hover, .container .card .card_item_list .list_item .item_btns .item_cancel_btn:focus {
+  color: #ff5e5e;
+}
+.container .item_add_btn {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--clr-5);
+  transition: color 100ms ease;
+  font-size: 1.5rem;
+}
+.container .item_add_btn:hover, .container .item_add_btn:focus {
   color: var(--clr-4);
 }/*# sourceMappingURL=main.css.map */
