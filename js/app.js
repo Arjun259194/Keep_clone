@@ -1,1 +1,3 @@
-console.log("connected, hello!!");
+window.addEventListener('DOMContentLoaded', () => {
+  editableItemListner()
+});
