@@ -88,14 +88,18 @@ ul {
 
 .container {
   padding: 1rem;
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: flex-start;
   background-color: var(--clr-1);
 }
 .container .card {
-  width: 30ch;
+  width: 28ch;
   padding: 1rem;
   margin: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  position: relative;
   border: 1px solid var(--clr-5);
   border-radius: 1rem;
   background-color: var(--clr-1);
@@ -104,9 +108,11 @@ ul {
   box-shadow: 0 0 0.5rem var(--clr-3);
 }
 .container .card .card_heading {
+  margin-bottom: 0.25rem;
   font-size: 1.25rem;
 }
 .container .card .card_sub_heading {
+  padding-bottom: 0.25rem;
   margin-bottom: 0.25rem;
   font-size: 0.8rem;
   font-weight: 500;
@@ -116,7 +122,8 @@ ul {
 .container .card .card_item_list {
   min-height: 200px;
   max-height: 300px;
-  padding-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
   overflow-y: scroll;
 }
 .container .card .card_item_list::-webkit-scrollbar {
@@ -196,6 +203,7 @@ ul {
   color: var(--clr-5);
   transition: color 100ms ease;
   font-size: 1.5rem;
+  justify-self: baseline;
 }
 .container .item_add_btn:hover, .container .item_add_btn:focus {
   color: var(--clr-4);

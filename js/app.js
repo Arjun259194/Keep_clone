@@ -30,8 +30,19 @@ const editableItemListner = () => {
   })
 }
 
+const revomeItemLister = ()=>{
+  doc.querySelectorAll('.item_cancel_btn').forEach(e=>{
+    const listItem = getListItem(e)
+    const list = listItem.parentElement
+    e.addEventListener('click',()=>{
+      list.removeChild(listItem)
+    })
+  })
+}
+
 const setListener = () => {
   editableItemListner()
+  revomeItemLister()
 }
 
 window.addEventListener('DOMContentLoaded', () => {
