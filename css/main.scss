@@ -23,6 +23,24 @@ $font-fam-1: "Josefin Sans", sans-serif;
   color: $clr4;
   border: 2px $clr4 solid;
   border-radius: 1rem;
+  transition: border-radius 300ms ease-out;
+  transition: transform 100ms ease-out;
+
+  &:hover {
+    border-radius: 0.5rem;
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+}
+
+@mixin second_btn {
+  padding: 0.5em 1em;
+  background-color: $clr4;
+  color: $clr2;
+  border: 2px $clr4 solid;
+  border-radius: 1rem;
   transition: background-color 100ms ease-out;
   transition: border-radius 300ms ease-out;
 
@@ -31,8 +49,7 @@ $font-fam-1: "Josefin Sans", sans-serif;
   }
 
   &:active {
-    background-color: $clr4;
-    color: $clr2;
+    transform: scale(1.05);
   }
 }
 
@@ -63,6 +80,10 @@ $font-fam-1: "Josefin Sans", sans-serif;
 button,
 a {
   cursor: pointer;
+}
+
+button {
+  text-transform: capitalize;
 }
 
 a {
@@ -130,7 +151,7 @@ ul {
 .container {
   padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   align-items: flex-start;
   background-color: $clr1;
 
@@ -151,12 +172,12 @@ ul {
     }
 
     .card_heading {
-      margin-bottom: .25rem;
+      margin-bottom: 0.25rem;
       font-size: 1.25rem;
     }
 
     .card_sub_heading {
-      padding-bottom: .25rem;
+      padding-bottom: 0.25rem;
       margin-bottom: 0.25rem;
       font-size: 0.8rem;
       font-weight: 500;
@@ -167,8 +188,8 @@ ul {
     .card_item_list {
       min-height: 200px;
       max-height: 300px;
-      margin-bottom: .5rem;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
       overflow-y: scroll;
 
       &::-webkit-scrollbar {
@@ -244,6 +265,71 @@ ul {
   .item_add_btn {
     @include icon_btn($clr5, $clr4);
     font-size: 1.5rem;
-    justify-self:baseline;
+    justify-self: baseline;
+  }
+}
+
+.card_input_box {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: #1c1c1c64;
+}
+
+.box {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  position: absolute;
+  margin-inline: auto;
+  background-color: $clr1;
+  border: 2px solid $clr5;
+  border-radius: 1rem;
+
+  animation: top_down 1s ease forwards;
+
+  & > * {
+    font-size: 2rem;
+  }
+
+  .inputs {
+    display: flex;
+    flex-flow: column nowrap;
+
+    input {
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+
+      &::placeholder {
+        color: $clr5;
+      }
+    }
+  }
+
+  .buttons {
+    button {
+      font-size: 1rem;
+    }
+    #ok_btn {
+      @include second_btn();
+    }
+    #cancel_btn {
+      @include prim_btn();
+    }
+  }
+}
+
+@keyframes top_down {
+  0% {
+    transform: translateY(-110%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

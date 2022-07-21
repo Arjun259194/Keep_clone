@@ -1,8 +1,16 @@
-doc.querySelectorAll('.item_add_btn').forEach(el => {
-  const itemList = el.parentElement.querySelector('.card_item_list');
-  el.addEventListener('click', () => {
-    addListItem(itemList)
-  })
+doc.querySelector('.nav_add_btn').addEventListener('click', () => {
+  cardInBoxDisplay(true)
+})
+
+doc.querySelector('#ok_btn').addEventListener('click', () => {
+  const data = {
+    title: doc.querySelector('#title').value,
+    subTitle: doc.querySelector('#sub_title').value
+  }
+  cardInBoxDisplay(false)
+  const card = createCard(data)
+  doc.querySelector('.container').appendChild(card)
+  setListener()
 })
 
 const editableItemListner = () => {
@@ -30,11 +38,11 @@ const editableItemListner = () => {
   })
 }
 
-const revomeItemLister = ()=>{
-  doc.querySelectorAll('.item_cancel_btn').forEach(e=>{
+const revomeItemLister = () => {
+  doc.querySelectorAll('.item_cancel_btn').forEach(e => {
     const listItem = getListItem(e)
     const list = listItem.parentElement
-    e.addEventListener('click',()=>{
+    e.addEventListener('click', () => {
       list.removeChild(listItem)
     })
   })
@@ -47,4 +55,7 @@ const setListener = () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   setListener()
+  doc.querySelectorAll('.item_add_btn').forEach(el => {
+    addEvent(el)
+  })
 });
