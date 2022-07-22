@@ -44,6 +44,15 @@ ul {
   font-weight: bold;
 }
 
+.checked .item_text span {
+  color: var(--clr-5);
+  text-decoration: line-through;
+}
+.checked .item_btns .item_edit_btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .nav_bar {
   padding: 0.25rem 1rem;
   display: flex;
@@ -79,11 +88,16 @@ ul {
   color: var(--clr-4);
   border: 2px var(--clr-4) solid;
   border-radius: 1rem;
-  transition: border-radius 300ms ease-out;
   transition: transform 100ms ease-out;
 }
 .nav_bar .nav_add_btn:hover {
+  transition: border-radius 300ms ease-out;
   border-radius: 0.5rem;
+}
+.nav_bar .nav_add_btn:focus {
+  transition: border-radius 300ms ease-out;
+  border-radius: 0.5rem;
+  outline: 2px solid var(--clr-2);
 }
 .nav_bar .nav_add_btn:active {
   transform: scale(1.05);
@@ -200,6 +214,27 @@ ul {
 .container .card .card_item_list .list_item .item_btns .item_cancel_btn:hover, .container .card .card_item_list .list_item .item_btns .item_cancel_btn:focus {
   color: #ff5e5e;
 }
+.container .card .card_delete_btn {
+  margin: 0.25rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--clr-5);
+  transition: color 100ms ease;
+  background-color: var(--clr-1);
+  border: 1px solid var(--clr-5);
+  border-radius: 50%;
+}
+.container .card .card_delete_btn:hover, .container .card .card_delete_btn:focus {
+  color: #ff1645;
+}
+.container .card .card_delete_btn:hover, .container .card .card_delete_btn:focus {
+  background-color: #ff1645;
+  color: whitesmoke;
+  border: 1px solid #ff1645;
+}
 .container .item_add_btn {
   border: none;
   background-color: rgba(0, 0, 0, 0);
@@ -272,6 +307,11 @@ ul {
 .box .buttons #ok_btn:hover {
   border-radius: 0.5rem;
 }
+.box .buttons #ok_btn:focus {
+  transition: border-radius 300ms ease-out;
+  border-radius: 0.5rem;
+  outline: 2px solid var(--clr-2);
+}
 .box .buttons #ok_btn:active {
   transform: scale(1.05);
 }
@@ -281,11 +321,16 @@ ul {
   color: var(--clr-4);
   border: 2px var(--clr-4) solid;
   border-radius: 1rem;
-  transition: border-radius 300ms ease-out;
   transition: transform 100ms ease-out;
 }
 .box .buttons #cancel_btn:hover {
+  transition: border-radius 300ms ease-out;
   border-radius: 0.5rem;
+}
+.box .buttons #cancel_btn:focus {
+  transition: border-radius 300ms ease-out;
+  border-radius: 0.5rem;
+  outline: 2px solid var(--clr-2);
 }
 .box .buttons #cancel_btn:active {
   transform: scale(1.05);

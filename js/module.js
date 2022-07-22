@@ -13,6 +13,8 @@ const listItem = () => {
       <button class="item_cancel_btn material-symbols-outlined">close</button>
     </div>`
 
+  const checkInput = li.querySelector('.item_text .item_check')
+  checkItem(checkInput)
   return li
 }
 
@@ -23,7 +25,8 @@ const createCard = ({ title, subTitle }) => {
     `<h2 class="card_heading">${title}</h2>
     <h3 class="card_sub_heading">${subTitle}</h3>
     <ul class="card_item_list">
-      <li class="list_item">
+
+    <!-- <li class="list_item">
         <span class="item_text">
           <input type="checkbox" class="item_check" />
           <span contenteditable="false">list text</span>
@@ -32,21 +35,44 @@ const createCard = ({ title, subTitle }) => {
           <button class="item_edit_btn material-symbols-outlined">edit</button>
           <button class="item_cancel_btn material-symbols-outlined">close</button>
         </div>
-      </li>
+      </li> -->
+
     </ul>
-    <button class="item_add_btn material-symbols-outlined">add</button>`
+    <button class="item_add_btn material-symbols-outlined">add</button>
+    <button class="card_delete_btn material-symbols-outlined">close</button>
+    `
 
   const cardAddBtn = card.querySelector('.item_add_btn')
+  const cardDelBtn = card.querySelector('.card_delete_btn')
 
   addEvent(cardAddBtn)
+  deleteCardListner(cardDelBtn)
 
   return card
 }
 
 const addEvent = element => {
   element.addEventListener('click', () => {
-    const itemList = element.parentElement.querySelector('.card_item_list');
+    const itemList = element.parentElement.querySelector('.card_item_list')
     addListItem(itemList)
+  })
+}
+
+const deleteCardListner = deleteBtn => {
+  deleteBtn.addEventListener('click', () => {
+    const card = deleteBtn.parentElement
+    card.parentElement.removeChild(card)
+  })
+}
+
+const checkItem = el => {
+  const listItem = el.parentElement.parentElement
+  el.addEventListener('change', () => {
+    if (el.checked) {
+      listItem.classList.add('checked')
+    } else {
+      listItem.classList.remove('checked')
+    }
   })
 }
 
@@ -60,7 +86,7 @@ const getListItem = el => {
 }
 
 const selectText = el => {
-  const range = document.createRange();
+  const range = document.createRange()
   range.selectNodeContents(el)
   const sel = window.getSelection()
   sel.removeAllRanges()
@@ -69,4 +95,9 @@ const selectText = el => {
 
 const cardInBoxDisplay = state => {
   doc.querySelector('.card_input_box').style.display = (state == true) ? 'flex' : 'none'
+}
+
+const clearInputBox = () => {
+  doc.querySelector('#title').value = ""
+  doc.querySelector('#sub_title').value = ""
 }

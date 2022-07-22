@@ -14,7 +14,6 @@ $clr2: var(--clr-2);
 $clr3: var(--clr-3);
 $clr4: var(--clr-4);
 $clr5: var(--clr-5);
-$bor-r: 1rem;
 $font-fam-1: "Josefin Sans", sans-serif;
 
 @mixin prim_btn {
@@ -23,11 +22,17 @@ $font-fam-1: "Josefin Sans", sans-serif;
   color: $clr4;
   border: 2px $clr4 solid;
   border-radius: 1rem;
-  transition: border-radius 300ms ease-out;
   transition: transform 100ms ease-out;
 
   &:hover {
+    transition: border-radius 300ms ease-out;
     border-radius: 0.5rem;
+  }
+
+  &:focus {
+    transition: border-radius 300ms ease-out;
+    border-radius: 0.5rem;
+    outline: 2px solid $clr2;
   }
 
   &:active {
@@ -46,6 +51,12 @@ $font-fam-1: "Josefin Sans", sans-serif;
 
   &:hover {
     border-radius: 0.5rem;
+  }
+
+  &:focus {
+    transition: border-radius 300ms ease-out;
+    border-radius: 0.5rem;
+    outline: 2px solid $clr2;
   }
 
   &:active {
@@ -102,6 +113,22 @@ ul {
   a {
     color: $clr4;
     font-weight: bold;
+  }
+}
+
+.checked {
+  .item_text {
+    span {
+      color: $clr5;
+      text-decoration: line-through;
+    }
+  }
+
+  .item_btns {
+    .item_edit_btn {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 }
 
@@ -259,6 +286,23 @@ ul {
             font-size: 1rem;
           }
         }
+      }
+    }
+    .card_delete_btn {
+      margin: 0.25rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include icon_btn($clr5, #ff1645);
+      background-color: $clr1;
+      border: 1px solid $clr5;
+      border-radius: 50%;
+
+      &:hover,
+      &:focus {
+        background-color: #ff1645;
+        color: whitesmoke;
+        border: 1px solid #ff1645;
       }
     }
   }
