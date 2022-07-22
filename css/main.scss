@@ -7,6 +7,7 @@
   --clr-3: #1c1c1c;
   --clr-4: #6caa7f;
   --clr-5: #cccccc;
+  // dark color
 }
 
 $clr1: var(--clr-1);
@@ -88,6 +89,10 @@ $font-fam-1: "Josefin Sans", sans-serif;
   transition: all 300ms ease;
 }
 
+body {
+  height: 100vh;
+}
+
 button,
 a {
   cursor: pointer;
@@ -135,11 +140,15 @@ ul {
 // element style
 
 .nav_bar {
+  width: 100vw;
+  position: fixed;
+  top: 0;
   padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: $clr2;
+  z-index: 100;
 
   .left_nav {
     display: flex;
@@ -170,13 +179,20 @@ ul {
     }
   }
 
-  .nav_add_btn {
-    @include prim_btn();
+  .nav_right {
+    .nav_theme_toggle {
+      @include second_btn();
+    }
+    .nav_add_btn {
+      @include prim_btn();
+    }
   }
 }
 
 .container {
+  min-height: 100vh;
   padding: 1rem;
+  padding-top: 5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: flex-start;
@@ -322,6 +338,7 @@ ul {
   top: 0;
   left: 0;
   background-color: #1c1c1c64;
+  z-index: 200;
 }
 
 .box {
@@ -338,7 +355,7 @@ ul {
   animation: top_down 1s ease forwards;
 
   & > * {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 
   .inputs {
@@ -347,8 +364,12 @@ ul {
 
     input {
       padding: 0.5rem 1rem;
+      padding-left: .25rem;
       margin-bottom: 1rem;
-      font-size: 1.5rem;
+      font-size:1.25rem;
+      background-color: $clr1;
+      border: none;
+      border-bottom: 2px solid $clr4;
 
       &::placeholder {
         color: $clr5;
@@ -365,6 +386,26 @@ ul {
     }
     #cancel_btn {
       @include prim_btn();
+    }
+  }
+}
+
+.dark_Theme {
+  // --clr-1: #1c1c1c;
+  --clr-1: #141010;
+  // --clr-2:#1A1A40;
+  --clr-2: #141010;
+  --clr-3: aliceblue;
+  --clr-4: #1fdf64;
+  --clr-5: hsl(0, 0%, 40%);
+
+  .nav_bar {
+    border-bottom: 1px solid $clr5;
+  }
+
+  .card {
+    .card_sub_heading {
+      border-bottom: 2px solid $clr5;
     }
   }
 }

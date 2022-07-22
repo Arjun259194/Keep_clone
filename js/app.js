@@ -74,4 +74,8 @@ window.addEventListener('DOMContentLoaded', () => {
     checkItem(el)
   })
 
+  doc.querySelector('.nav_right .nav_theme_toggle').addEventListener('click',()=>{
+    doc.body.classList.toggle('dark_Theme');
+  })
+
 })
