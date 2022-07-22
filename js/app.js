@@ -62,6 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
     cardInBoxDisplay(false)
     const card = createCard(data)
     doc.querySelector('.container').appendChild(card)
+    card.scrollIntoView()
     setListener()
   })
 
