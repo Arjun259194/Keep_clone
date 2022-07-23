@@ -91,6 +91,7 @@ ul {
 }
 .nav_bar .left_nav img {
   padding: 0.25rem;
+  margin-right: 0.5rem;
   background-color: var(--clr-3);
   border-radius: 50%;
 }
@@ -166,11 +167,14 @@ ul {
   border: 1px solid var(--clr-5);
   border-radius: 1rem;
   background-color: var(--clr-1);
-  -webkit-animation: slide_in 800ms ease-out forwards;
-          animation: slide_in 800ms ease-out forwards;
+  -webkit-animation: slide_in 500ms ease-out forwards;
+          animation: slide_in 500ms ease-out forwards;
 }
-.container .card:hover, .container .card:focus {
-  box-shadow: 0 0 0.5rem var(--clr-3);
+.container .card:hover {
+  box-shadow: 0 0 1rem var(--clr-3);
+}
+.container .card:focus {
+  outline: 2px solid var(--clr-4);
 }
 .container .card .card_heading {
   margin-bottom: 0.25rem;
@@ -396,7 +400,7 @@ ul {
 }
 
 .dark_Theme {
-  --clr-1: hsl(0, 11%, 10%);
+  --clr-1: hsl(0, 11%, 15%);
   --clr-2: #141010;
   --clr-3: aliceblue;
   --clr-4: #1fdf64;

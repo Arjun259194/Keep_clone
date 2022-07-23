@@ -53,15 +53,23 @@ const createCard = ({ title, subTitle }) => {
 
 const saveData = () => {
   const container = doc.querySelector('.container')
-  const data = container.innerHTML
-  localStorage.setItem('data', data)
+  const data = {
+    container:container.innerHTML,
+    bodyClass:doc.body.className
+  }
+  localStorage.setItem('data', JSON.stringify(data))
 }
 
 const loadData = () => {
   const container = doc.querySelector('.container')
-  const data = localStorage.getItem('data')
-  container.innerHTML = data
+  const retrievedData = localStorage.getItem('data')
+  if (retrievedData == null) return
+  const data = JSON.parse(retrievedData)
+  container.innerHTML = data.container
   inputCheck()
+  if (data.bodyClass != "" || null || undefined){
+    doc.body.classList.add(data.bodyClass)
+  }
 }
 
 const inputCheck = () => {
