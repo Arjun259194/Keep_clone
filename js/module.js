@@ -51,10 +51,29 @@ const createCard = ({ title, subTitle }) => {
   return card
 }
 
+const saveData = () => {
+  const container = doc.querySelector('.container')
+  const data = container.innerHTML
+  localStorage.setItem('data', data)
+}
+
+const loadData = () => {
+  const container = doc.querySelector('.container')
+  const data = localStorage.getItem('data')
+  container.innerHTML = data
+  inputCheck()
+}
+
+const inputCheck = () => {
+  doc.querySelectorAll('.checked .item_text .item_check')
+    .forEach(input => input.checked = true)
+}
+
 const addEvent = element => {
   element.addEventListener('click', () => {
     const itemList = element.parentElement.querySelector('.card_item_list')
     addListItem(itemList)
+    saveData();
   })
 }
 
@@ -62,6 +81,7 @@ const deleteCardListner = deleteBtn => {
   deleteBtn.addEventListener('click', () => {
     const card = deleteBtn.parentElement
     card.parentElement.removeChild(card)
+    saveData();
   })
 }
 
@@ -73,6 +93,7 @@ const checkItem = el => {
     } else {
       listItem.classList.remove('checked')
     }
+    saveData();
   })
 }
 
