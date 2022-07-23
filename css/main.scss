@@ -86,11 +86,28 @@ $font-fam-1: "Josefin Sans", sans-serif;
   box-sizing: border-box;
   font-family: $font-fam-1;
   color: $clr3;
-  transition: all 300ms ease;
+  transition: background-color 100ms ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  margin: 0;
+}
+::-webkit-scrollbar-track {
+  background-color: $clr4;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $clr2;
+  border-radius: 1rem;
+  border: 1px solid $clr4;
 }
 
 button,
@@ -141,20 +158,19 @@ ul {
 
 .nav_bar {
   width: 100vw;
-  position: fixed;
-  top: 0;
+  height: 3rem;
   padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: $clr2;
-  z-index: 100;
 
   .left_nav {
     display: flex;
     align-items: center;
     img {
       padding: 0.25rem;
+      margin-right: .5rem;
       background-color: $clr3;
       border-radius: 50%;
     }
@@ -181,25 +197,24 @@ ul {
 
   .nav_right {
     .nav_theme_toggle {
-      @include second_btn();
+      @include prim_btn();
     }
     .nav_add_btn {
-      @include prim_btn();
+      @include second_btn();
     }
   }
 }
 
 .container {
-  min-height: 100vh;
+  height: calc(100vh - 3rem);
   padding: 1rem;
-  padding-top: 5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(28ch, 1fr));
   align-items: flex-start;
   background-color: $clr1;
+  overflow-x: auto;
 
   .card {
-    width: 28ch;
     padding: 1rem;
     margin: 1rem;
     display: flex;
@@ -209,9 +224,14 @@ ul {
     border-radius: 1rem;
     background-color: $clr1;
 
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 0.5rem $clr3;
+    animation: slide_in 500ms ease-out forwards;
+
+    &:hover {
+      box-shadow: 0 0 1rem $clr3;
+    }
+
+    &:focus{
+      outline: 2px solid $clr4;
     }
 
     .card_heading {
@@ -233,7 +253,7 @@ ul {
       max-height: 300px;
       margin-bottom: 0.5rem;
       margin-bottom: 0.5rem;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       &::-webkit-scrollbar {
         width: 2px;
@@ -260,6 +280,12 @@ ul {
             .item_add_btn,
             .item_edit_btn {
               display: block;
+            }
+
+            .item_cancel_btn {
+              &:hover {
+                animation: shake_x 100ms ease-out forwards;
+              }
             }
           }
         }
@@ -319,6 +345,8 @@ ul {
         background-color: #ff1645;
         color: whitesmoke;
         border: 1px solid #ff1645;
+
+        animation: shake_x 150ms ease-out forwards;
       }
     }
   }
@@ -364,9 +392,9 @@ ul {
 
     input {
       padding: 0.5rem 1rem;
-      padding-left: .25rem;
+      padding-left: 0.25rem;
       margin-bottom: 1rem;
-      font-size:1.25rem;
+      font-size: 1.25rem;
       background-color: $clr1;
       border: none;
       border-bottom: 2px solid $clr4;
@@ -391,19 +419,19 @@ ul {
 }
 
 .dark_Theme {
-  // --clr-1: #1c1c1c;
-  --clr-1: #141010;
-  // --clr-2:#1A1A40;
+  --clr-1: hsl(0, 11%, 15%);
   --clr-2: #141010;
   --clr-3: aliceblue;
   --clr-4: #1fdf64;
   --clr-5: hsl(0, 0%, 40%);
 
-  .nav_bar {
-    border-bottom: 1px solid $clr5;
-  }
-
   .card {
+    background-color: $clr2;
+    border: none;
+
+    .card_delete_btn {
+      border: none;
+    }
     .card_sub_heading {
       border-bottom: 2px solid $clr5;
     }
@@ -416,5 +444,35 @@ ul {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes slide_in {
+  0% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shake_x {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(15%);
+  }
+  30% {
+    transform: translateX(-15%);
+  }
+  60% {
+    transform: translateX(15%);
+  }
+  90% {
+    transform: translateX(-15%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

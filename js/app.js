@@ -12,12 +12,14 @@ const editableItemListner = () => {
           event.preventDefault()
           text.contentEditable = false
           Element.innerText = "edit"
+          saveData();
         }
       })
 
       text.addEventListener('blur', () => {
         text.contentEditable = false
         Element.innerText = "edit"
+        saveData();
       })
     })
   })
@@ -29,6 +31,7 @@ const revomeItemLister = () => {
     const list = listItem.parentElement
     e.addEventListener('click', () => {
       list.removeChild(listItem)
+    saveData();
     })
   })
 }
@@ -39,6 +42,7 @@ const setListener = () => {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  loadData()
   setListener()
 
   doc.querySelectorAll('.item_add_btn').forEach(el => {
@@ -62,7 +66,9 @@ window.addEventListener('DOMContentLoaded', () => {
     cardInBoxDisplay(false)
     const card = createCard(data)
     doc.querySelector('.container').appendChild(card)
+    card.scrollIntoView()
     setListener()
+    saveData();
   })
 
   doc.querySelector('#cancel_btn').addEventListener('click', () => {
@@ -74,8 +80,9 @@ window.addEventListener('DOMContentLoaded', () => {
     checkItem(el)
   })
 
-  doc.querySelector('.nav_right .nav_theme_toggle').addEventListener('click',()=>{
+  doc.querySelector('.nav_right .nav_theme_toggle').addEventListener('click', () => {
     doc.body.classList.toggle('dark_Theme');
+    saveData()
   })
 
 })
