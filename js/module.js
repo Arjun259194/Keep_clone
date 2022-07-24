@@ -1,5 +1,15 @@
 const doc = document
 
+const menuOpen = () =>{
+  const menu = doc.querySelector('.wrap')
+  menu.style.transform = "translateY(0)"
+}
+
+const menuClose = () => {
+  const menu = doc.querySelector('.wrap')
+  menu.style.transform = "translateY(-100%)"
+}
+
 const listItem = () => {
   let li = doc.createElement('li')
   li.classList.add('list_item')

@@ -50,6 +50,9 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
   doc.querySelector('.nav_add_btn').addEventListener('click', () => {
+    if (screen.width < 700){
+      menuClose()
+    }
     cardInBoxDisplay(true)
   })
 
@@ -84,5 +87,15 @@ window.addEventListener('DOMContentLoaded', () => {
     doc.body.classList.toggle('dark_Theme');
     saveData()
   })
+
+  doc.querySelector('.menu-button').addEventListener('click',()=>{
+    menuOpen();
+  })
+
+  doc.querySelector('.close-menu-button').addEventListener('click',()=>{
+    menuClose();
+  })
+
+  // console.log(doc.querySelector('close-menu-button'));
 
 })

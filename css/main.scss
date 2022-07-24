@@ -17,6 +17,12 @@ $clr4: var(--clr-4);
 $clr5: var(--clr-5);
 $font-fam-1: "Josefin Sans", sans-serif;
 
+@mixin mobile-screen {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+
 @mixin prim_btn {
   padding: 0.5em 1em;
   background-color: $clr2;
@@ -95,6 +101,7 @@ html {
 
 body {
   height: 100vh;
+  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -138,6 +145,14 @@ ul {
   }
 }
 
+.small-only {
+  display: none;
+
+  @include mobile-screen() {
+    display: block;
+  }
+}
+
 .checked {
   .item_text {
     span {
@@ -170,38 +185,91 @@ ul {
     align-items: center;
     img {
       padding: 0.25rem;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       background-color: $clr3;
       border-radius: 50%;
     }
   }
+  .wrap {
+    display: flex;
+    align-items: center;
 
-  .center_nav {
-    ul {
-      display: flex;
+    @include mobile-screen() {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      flex-flow: column nowrap;
       align-items: center;
+      background-color: $clr2;
+      backdrop-filter: blur(1rem);
+      z-index: 9999;
+      transform: translateY(-100%);
 
-      li {
-        margin-right: 2rem;
+      transition: transform 500ms ease-in-out;
+    }
 
-        a {
-          text-transform: capitalize;
+    .center_nav {
+      margin-right: 6rem;
+      @include mobile-screen() {
+        margin: 0;
+        margin-bottom: 0.5rem;
+        width: 60%;
+        border-bottom: 1px solid $clr5;
 
-          &:hover {
-            text-decoration: underline;
+        ul {
+          display: flex;
+          flex-flow: column nowrap;
+        }
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+
+        li {
+          margin-right: 2rem;
+
+          @include mobile-screen() {
+            margin: 0.5rem 0;
+            font-size: 1.25rem;
+          }
+
+          a {
+            text-transform: capitalize;
+
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
     }
+
+    .nav_right {
+      @include mobile-screen() {
+        width: 60%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        & > button {
+          margin: 0.25rem 0;
+        }
+      }
+      .nav_theme_toggle {
+        @include prim_btn();
+      }
+      .nav_add_btn {
+        @include second_btn();
+      }
+      .close-menu-button {
+        @include prim_btn();
+      }
+    }
   }
 
-  .nav_right {
-    .nav_theme_toggle {
-      @include prim_btn();
-    }
-    .nav_add_btn {
-      @include second_btn();
-    }
+  .menu-button {
+    @include icon_btn($clr4, $clr4);
   }
 }
 
@@ -230,7 +298,7 @@ ul {
       box-shadow: 0 0 1rem $clr3;
     }
 
-    &:focus{
+    &:focus {
       outline: 2px solid $clr4;
     }
 
@@ -320,12 +388,19 @@ ul {
             display: none;
             @include icon_btn($clr5, $clr4);
             font-size: 1rem;
+
+            @include mobile-screen() {
+              display: block;
+            }
           }
 
           .item_cancel_btn {
             display: none;
             @include icon_btn($clr5, #ff5e5e);
             font-size: 1rem;
+            @include mobile-screen() {
+              display: block;
+            }
           }
         }
       }
