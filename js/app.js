@@ -31,7 +31,7 @@ const revomeItemLister = () => {
     const list = listItem.parentElement
     e.addEventListener('click', () => {
       list.removeChild(listItem)
-    saveData();
+      saveData();
     })
   })
 }
@@ -50,6 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 
   doc.querySelector('.nav_add_btn').addEventListener('click', () => {
+    if (screen.width < 700) closeMenu()
     cardInBoxDisplay(true)
   })
 
@@ -85,4 +86,11 @@ window.addEventListener('DOMContentLoaded', () => {
     saveData()
   })
 
+  doc.querySelector('.menu-btn').addEventListener('click', () => {
+    openMenu()
+  })
+
+  doc.querySelector('.close-menu-btn').addEventListener('click', () => {
+    closeMenu()
+  })
 })
