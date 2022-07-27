@@ -92,7 +92,7 @@ $font-fam-1: "Josefin Sans", sans-serif;
   box-sizing: border-box;
   font-family: $font-fam-1;
   color: $clr3;
-  transition: background-color 100ms ease-out;
+  transition: background-color 300ms ease-out;
 }
 
 html {
@@ -279,7 +279,7 @@ ul {
   height: calc(100vh - 3rem);
   padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(28ch, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
   align-items: flex-start;
   background-color: $clr1;
   overflow-x: auto;
@@ -390,12 +390,18 @@ ul {
             display: none;
             @include icon_btn($clr5, $clr4);
             font-size: 1rem;
+            @include mobile(){
+              display: block;
+            }
           }
 
           .item_cancel_btn {
             display: none;
             @include icon_btn($clr5, #ff5e5e);
             font-size: 1rem;
+            @include mobile(){
+              display: block;
+            }
           }
         }
       }
