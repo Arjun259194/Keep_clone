@@ -54,8 +54,8 @@ const createCard = ({ title, subTitle }) => {
 const saveData = () => {
   const container = doc.querySelector('.container')
   const data = {
-    container:container.innerHTML,
-    bodyClass:doc.body.className
+    container: container.innerHTML,
+    bodyClass: doc.body.className
   }
   localStorage.setItem('data', JSON.stringify(data))
 }
@@ -67,9 +67,19 @@ const loadData = () => {
   const data = JSON.parse(retrievedData)
   container.innerHTML = data.container
   inputCheck()
-  if (data.bodyClass != "" || null || undefined){
+  if (data.bodyClass != "" || null || undefined) {
     doc.body.classList.add(data.bodyClass)
   }
+}
+
+const openMenu = () => {
+  const nav = doc.querySelector('.wrap')
+  nav.style.transform = 'translateX(0)'
+}
+
+const closeMenu = () => {
+  const nav = doc.querySelector('.wrap')
+  nav.style.transform = 'translateX(100%)'
 }
 
 const inputCheck = () => {

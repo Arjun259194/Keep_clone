@@ -17,6 +17,12 @@ $clr4: var(--clr-4);
 $clr5: var(--clr-5);
 $font-fam-1: "Josefin Sans", sans-serif;
 
+@mixin mobile {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+
 @mixin prim_btn {
   padding: 0.5em 1em;
   background-color: $clr2;
@@ -135,6 +141,18 @@ ul {
   a {
     color: $clr4;
     font-weight: bold;
+
+    @include mobile(){
+      text-decoration: underline;
+    }
+  }
+}
+
+.mobile-only {
+  display: none;
+
+  @include mobile() {
+    display: block;
   }
 }
 
@@ -164,44 +182,96 @@ ul {
   align-items: center;
   justify-content: space-between;
   background-color: $clr2;
+  overflow: hidden;
 
   .left_nav {
     display: flex;
     align-items: center;
     img {
       padding: 0.25rem;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       background-color: $clr3;
       border-radius: 50%;
     }
   }
 
-  .center_nav {
-    ul {
+  .wrap {
+    display: flex;
+    align-items: center;
+
+    @include mobile() {
+      width: 75%;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
       display: flex;
+      flex-flow: column nowrap;
       align-items: center;
+      background-color: $clr2;
+      z-index: 999;
 
-      li {
-        margin-right: 2rem;
+      transform: translateX(100%);
 
-        a {
-          text-transform: capitalize;
+      transition: transform 500ms cubic-bezier(0.86, -0.03, 0.61, 0.78);
+    }
+    .center_nav {
+      margin-right: 8rem;
+      @include mobile() {
+        margin: 0;
+        margin-bottom: 2rem;
+      }
+      ul {
+        display: flex;
+        align-items: center;
 
-          &:hover {
-            text-decoration: underline;
+        @include mobile() {
+          flex-flow: column nowrap;
+          li {
+            margin: 0.5rem;
+            font-size: 1.5rem;
+          }
+        }
+
+        li {
+          margin-right: 2rem;
+          a {
+            text-transform: capitalize;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }
     }
+
+    .nav_right {
+      @include mobile(){
+        width: 85%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        button{
+          margin-bottom: 1rem;
+          font-size: 1rem;
+        }
+      }
+      .nav_theme_toggle {
+        @include prim_btn();
+      }
+      .nav_add_btn {
+        @include second_btn();
+      }
+
+      .close-menu-btn {
+        @include prim_btn();
+      }
+    }
   }
 
-  .nav_right {
-    .nav_theme_toggle {
-      @include prim_btn();
-    }
-    .nav_add_btn {
-      @include second_btn();
-    }
+  .menu-btn {
+    @include icon_btn($clr4, $clr4);
   }
 }
 
@@ -230,7 +300,7 @@ ul {
       box-shadow: 0 0 1rem $clr3;
     }
 
-    &:focus{
+    &:focus {
       outline: 2px solid $clr4;
     }
 
@@ -381,6 +451,13 @@ ul {
   border-radius: 1rem;
 
   animation: top_down 1s ease forwards;
+
+  @include mobile(){
+    width: 100%;
+    margin: 0;
+    border-radius: 0 0 1rem 1rem;
+    border-top: none;
+  }
 
   & > * {
     font-size: 1.25rem;
